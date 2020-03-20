@@ -42,4 +42,17 @@ public class User {
     )
     private List<Goods> goods;
 
+    @ManyToMany
+    @JoinTable(name = "service",
+            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_staff", referencedColumnName = "id")
+    )
+    private List<Staff> staffs;
+
+    @ManyToMany
+    @JoinTable(name = "service",
+            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_inspection", referencedColumnName = "id")
+    )
+    private List<Inspection> inspections;
 }
