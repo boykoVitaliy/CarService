@@ -19,10 +19,10 @@ public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false,name = "salary")
-    private double salary;
+    private Double salary;
     @Column(nullable = false,name = "first_name")
     private String firstName;
     @Column(nullable = false,name = "last_name")

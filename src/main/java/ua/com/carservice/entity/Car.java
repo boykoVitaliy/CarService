@@ -26,7 +26,7 @@ public class Car {
     @Column(nullable = false)
     private String model;
     @Column(nullable = false)
-    private int year;
+    private Integer year;
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Color color;
