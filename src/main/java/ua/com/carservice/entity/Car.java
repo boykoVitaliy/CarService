@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 import ua.com.carservice.entity.enums.Color;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Builder
 @Entity
-@Table(name = "car")
+@Table(name = "cars")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
