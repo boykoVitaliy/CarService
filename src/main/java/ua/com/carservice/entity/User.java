@@ -21,11 +21,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "last_name")
+    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false, name = "first_name")
+    @Column(nullable = false)
     private String firstName;
-    @Column(unique = true,name = "email")
+    @Column(unique = true)
     private String email;
     @Column(unique = true)
     private String password;
@@ -35,7 +35,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Car> cars;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "goods_bucket",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "goods_id", referencedColumnName = "id")
@@ -55,4 +55,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "id_inspection", referencedColumnName = "id")
     )
     private List<Inspection> inspections;
+
+//    @ManyToMany(cascade = CascadeType.PERSIST)
+//    @JoinTable(name = "timetable_group",
+//            joinColumns = @JoinColumn(name = "timetable_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
+//    private List<Group> groups;
 }

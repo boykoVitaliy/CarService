@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Builder
 @Entity
-@Table(name = "cars")
+@Table(name = "car")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "firm")
+    @Column(nullable = false)
     private String firm;
     @Column(nullable = false)
     private String model;
