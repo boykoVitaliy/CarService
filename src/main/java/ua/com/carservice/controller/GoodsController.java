@@ -8,7 +8,7 @@ import ua.com.carservice.service.GoodsService;
 
 import java.util.List;
 
-import static ua.com.carservice.constants.ResourceMapping.GOODS;
+import static ua.com.carservice.constants.ResourceMapping.*;
 
 @RestController
 public class GoodsController {
@@ -27,20 +27,20 @@ public class GoodsController {
     }
 
 
-    @GetMapping("/goods/price")
+    @GetMapping(GOODS+PRICE)
     @ResponseBody
     public List<Goods> findGoodsByPrice(@RequestParam(required = false) Double price) {
         return goodsService.findGoodsByPrice(price);
     }
 
 
-    @GetMapping("/goods/category")
+    @GetMapping(GOODS+CATEGORY)
     @ResponseBody
     public List<Goods> findGoodsByCategory(@RequestParam(required = false) String category) {
         return goodsService.findGoodsByCategory(category);
     }
 
-    @GetMapping("/goods/firm")
+    @GetMapping(GOODS+GOODS_FIRM)
     @ResponseBody
     public List<Goods> findGoodsByFirm(@RequestParam(required = false) String firm) {
         return goodsService.findGoodsByFirm(firm);

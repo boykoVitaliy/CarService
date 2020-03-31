@@ -34,16 +34,17 @@ public class CarController {
     public List<Car> findByColor(Color color) {
         return carService.findByColor(color);
     }
-
-//    @GetMapping(YEAR_FIRM)
-////    @ResponseBody
-//    public List<Car> findAllByYearAndFirm(@RequestParam(value = "firm",required = false) String firm, @RequestParam(value = "age",required = false) Integer age) {
+//
+//    @GetMapping(CAR+YEAR_FIRM)
+//    @ResponseBody
+//    public List<Car> findAllByYearAndFirm( @RequestParam(value = "firm",required = false) String firm,  @RequestParam(value = "age",required = false)Integer age) {
 //        return carService.findAllByYearAndFirm(firm, age);
 //    }
 
 
     @GetMapping(YEAR_FIRM)
-//    @ResponseBody
+    @ResponseBody
+
     public Set<Map.Entry<String, Integer>> findAllByYearAndFirm(@RequestParam Map<String,Integer> carService ) {
         return carService.entrySet();
     }
