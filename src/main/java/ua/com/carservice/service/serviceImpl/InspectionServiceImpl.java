@@ -35,4 +35,16 @@ public class InspectionServiceImpl implements InspectionService {
     public List<Inspection> findByPriceIsGreaterThan(Double price) {
         return inspectionRepository.findByPriceIsGreaterThan(price);
     }
+
+    @Override
+    public Inspection save(Inspection inspect) {
+        return inspectionRepository.save(inspect);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        inspectionRepository.deleteById(id);
+    }
+
+
 }

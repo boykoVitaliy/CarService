@@ -30,12 +30,18 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> findAllByYearAndFirm(String firm, int age) {
-        return carRepository.findAllByYearAndFirm(firm, age);
-    }
-
-    @Override
     public List<Car> findByYear(Integer year) {
         return carRepository.findByYear(year);
     }
+
+    @Override
+    public Car save(Car car) {
+        return carRepository.save(car);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        carRepository.deleteById(id);
+    }
+
 }

@@ -17,7 +17,7 @@ public final class ResourceMapping {
 
     //--Inspection constants
 
-    public static final String INSPECTION = "/inspection";
+    public static final String INSPECTION = "/inspect";
     public static final String INSPECTION_PRICE = "/price/";
     public static final String SUPPORT = "/support/";
     public static final String BIGGER_PRICE = "/bigger/price";
@@ -35,5 +35,6 @@ public final class ResourceMapping {
     public static final String USER_CARS = "/cars/";
     public static final String USER_NUMBER = "/number/";
     public static final String USER_EMAIL = "/email/";
+    public static final String FIND_MODEL_CAR = "/model/";
 
 }

@@ -41,4 +41,17 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> findGoodsByFirm(String firm) {
         return goodsRepository.findGoodsByFirm(firm);
     }
+
+    @Override
+    public Goods save(Goods goods) {
+        return goodsRepository.save(goods);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        goodsRepository.deleteById(id);
+
+    }
+
+
 }

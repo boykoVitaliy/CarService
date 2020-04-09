@@ -1,10 +1,7 @@
 package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.com.carservice.entity.Inspection;
 import ua.com.carservice.service.InspectionService;
 
@@ -46,5 +43,16 @@ public class InspectionController {
     @ResponseBody
     public List<Inspection> findByPriceIsGreaterThan(@RequestParam(required = false) Double price) {
         return inspectionService.findByPriceIsGreaterThan(price);
+    }
+
+
+    @PostMapping(INSPECTION+"/{inspectId}")
+    public Inspection save(Inspection inspect) {
+        return inspectionService.save(inspect);
+    }
+
+    @GetMapping(INSPECTION+"/{deleteId}")
+    public void deleteById(Long id) {
+        inspectionService.deleteById(id);
     }
 }

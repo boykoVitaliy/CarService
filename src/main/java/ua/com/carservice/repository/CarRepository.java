@@ -5,6 +5,7 @@ import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.enums.Color;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
 
@@ -14,5 +15,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<Car> findByYear(Integer year);
 
+    void deleteById(Long id);
 
 }

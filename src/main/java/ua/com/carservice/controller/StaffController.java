@@ -1,10 +1,7 @@
 package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.com.carservice.entity.Staff;
 import ua.com.carservice.entity.enums.Position;
 import ua.com.carservice.service.StaffService;
@@ -53,5 +50,16 @@ public class StaffController {
     @ResponseBody
     public List<Staff> findByPosition(@RequestParam(required = false) Position position) {
         return staffService.findByPosition(position);
+    }
+
+
+    @PostMapping(STAFF+"/{staffId}")
+    public Staff save(Staff staff) {
+        return staffService.save(staff);
+    }
+
+    @GetMapping(STAFF+"/{deleteId}")
+    public void deleteById(Long id) {
+        staffService.deleteById(id);
     }
 }

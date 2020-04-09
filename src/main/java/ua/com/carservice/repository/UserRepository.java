@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByCars(Car car);
+//    List<User> findByModelCars(Car model);
     List<User> findByNumber (Long number);
     List<User> findByEmail(String email);
+
 }

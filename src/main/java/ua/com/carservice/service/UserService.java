@@ -8,8 +8,15 @@ import java.util.List;
 public interface UserService {
 
     List<User> findAll();
+
     List<User> findByCars(Car car);
-    List<User> findByNumber (Long number);
+
+    List<User> findByNumber(Long number);
+
     List<User> findByEmail(String email);
 
+    //    List<User> findByModelCars(Car model);
+    User save(User user);
+
+    void deleteById(Long id);
 }

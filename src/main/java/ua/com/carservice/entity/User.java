@@ -56,9 +56,4 @@ public class User {
     )
     private List<Inspection> inspections;
 
-//    @ManyToMany(cascade = CascadeType.PERSIST)
-//    @JoinTable(name = "timetable_group",
-//            joinColumns = @JoinColumn(name = "timetable_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
-//    private List<Group> groups;
 }

@@ -45,4 +45,15 @@ public class GoodsController {
     public List<Goods> findGoodsByFirm(@RequestParam(required = false) String firm) {
         return goodsService.findGoodsByFirm(firm);
     }
+
+    @PostMapping(GOODS+"/{goodsId}")
+    public Goods save(Goods goods) {
+        return goodsService.save(goods);
+    }
+
+    @GetMapping(GOODS+"/{deleteId}")
+    public void deleteById(Long id) {
+        goodsService.deleteById(id);
+
+    }
 }

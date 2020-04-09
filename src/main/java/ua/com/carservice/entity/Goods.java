@@ -30,5 +30,4 @@ public class Goods {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "goods")
     private List<User> user;
 
-
 }

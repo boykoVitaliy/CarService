@@ -8,7 +8,13 @@ import java.util.List;
 public interface CarService {
 
     List<Car> findAll();
+
     List<Car> findByColor(Color color);
-    List<Car> findAllByYearAndFirm(String firm, int age);
+
     List<Car> findByYear(Integer year);
+
+    Car save(Car car);
+
+    void deleteById(Long id);
+
 }

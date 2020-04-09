@@ -43,4 +43,14 @@ public class StaffServiceImpl implements StaffService {
     public List<Staff> findByPosition(Position position) {
         return staffRepository.findByPosition(position);
     }
+
+    @Override
+    public Staff save(Staff staff) {
+        return staffRepository.save(staff);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        staffRepository.deleteById(id);
+    }
 }

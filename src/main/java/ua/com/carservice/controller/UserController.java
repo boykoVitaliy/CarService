@@ -1,10 +1,7 @@
 package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.User;
 import ua.com.carservice.service.UserService;
@@ -29,21 +26,31 @@ public class UserController {
         return userService.findAll();
     }
 
-    @GetMapping(USER+USER_CARS)
+    @GetMapping(USER + USER_CARS)
     @ResponseBody
     public List<User> findByCars(@RequestParam(required = false) Car car) {
         return userService.findByCars(car);
     }
 
-    @GetMapping(USER+USER_NUMBER)
+    @GetMapping(USER + USER_NUMBER)
     @ResponseBody
-    public List<User> findByNumber(@RequestParam(required = false)Long number) {
+    public List<User> findByNumber(@RequestParam(required = false) Long number) {
         return userService.findByNumber(number);
     }
 
-    @GetMapping(USER+USER_EMAIL)
+    @GetMapping(USER + USER_EMAIL)
     @ResponseBody
-    public List<User> findByEmail(@RequestParam(required = false)String email) {
+    public List<User> findByEmail(@RequestParam(required = false) String email) {
         return userService.findByEmail(email);
+    }
+
+    @PostMapping(USER + "/{userId}")
+    public User save(User user) {
+        return userService.save(user);
+    }
+
+    @GetMapping(USER + "/{deleteId}")
+    public void deleteById(Long id) {
+        userService.deleteById(id);
     }
 }

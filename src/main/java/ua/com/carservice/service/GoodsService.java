@@ -9,8 +9,15 @@ import java.util.List;
 public interface GoodsService {
 
 
-    List<Goods>findAll();
+    List<Goods> findAll();
+
     List<Goods> findGoodsByPrice(Double price);
+
     List<Goods> findGoodsByCategory(String category);
+
     List<Goods> findGoodsByFirm(String firm);
+
+    Goods save(Goods goods);
+
+    void deleteById (Long id);
 }
