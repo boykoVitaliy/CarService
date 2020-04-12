@@ -4,6 +4,7 @@ import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.enums.Color;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CarService {
 
@@ -16,5 +17,8 @@ public interface CarService {
     Car save(Car car);
 
     void deleteById(Long id);
+
+    Optional<Car> findById(Long id);
+
 
 }

@@ -7,8 +7,7 @@ import ua.com.carservice.entity.enums.Color;
 import ua.com.carservice.service.CarService;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Optional;
 
 import static ua.com.carservice.constants.ResourceMapping.*;
 
@@ -57,9 +56,17 @@ public class CarController {
         return carService.save(car);
     }
 
-    @GetMapping(CAR+"/{deleteId}")
+    @GetMapping(CAR + "/{deleteId}")
     public void deleteById(Long id) {
         carService.deleteById(id);
     }
 
+    @GetMapping(CAR + "/car-update/{id}")
+    public Optional<Car> findById(Long id) {
+        return carService.findById(id);
+    }
+    @PostMapping(CAR+"/car-update")
+    public Car updateCar(Car car){
+        return carService.save(car);
+    }
 }

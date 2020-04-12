@@ -8,6 +8,7 @@ import ua.com.carservice.repository.CarRepository;
 import ua.com.carservice.service.CarService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -44,4 +45,8 @@ public class CarServiceImpl implements CarService {
         carRepository.deleteById(id);
     }
 
+    @Override
+    public Optional<Car> findById(Long id) {
+        return carRepository.findById(id);
+    }
 }
