@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ua.com.carservice.dto.CarDto.CarDto;
 import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
+import ua.com.carservice.entity.User;
 import ua.com.carservice.entity.enums.Color;
 import ua.com.carservice.repository.CarRepository;
 import ua.com.carservice.repository.UserRepository;
@@ -57,6 +58,13 @@ public class CarServiceImpl implements CarService {
             return carRepository.save(car);
         }).orElseThrow(() -> new RuntimeException());
     }
+
+    @Override
+    public List<Car> findCarByUserId(Long userId) {
+        return modelMapper.map(carRepository.findCarByUserId(userId),new TypeToken<List<CarDto>>() {
+        }.getType());
+    }
+
 
     @Override
     public Car update(Long carId, CarDto carDto) {

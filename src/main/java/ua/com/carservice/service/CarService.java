@@ -3,6 +3,7 @@ package ua.com.carservice.service;
 import ua.com.carservice.dto.CarDto.CarDto;
 import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
+import ua.com.carservice.entity.User;
 import ua.com.carservice.entity.enums.Color;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public interface CarService {
     void deleteById(Long id);
 
     Car save(Long userId,CarSaveDto carSaveDto);
+
+    List<Car> findCarByUserId(Long userId);
 
 
 }

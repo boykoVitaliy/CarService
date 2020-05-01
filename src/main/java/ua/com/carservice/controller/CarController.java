@@ -1,10 +1,12 @@
 package ua.com.carservice.controller;
 
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ua.com.carservice.dto.CarDto.CarDto;
 import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
+import ua.com.carservice.entity.User;
 import ua.com.carservice.entity.enums.Color;
 import ua.com.carservice.repository.CarRepository;
 import ua.com.carservice.service.CarService;
@@ -57,5 +59,9 @@ private final CarRepository carRepository;
     public void deleteById(Long id) {
         carService.deleteById(id);
     }
-    
+
+    @GetMapping(CAR+"/byuser")
+    public List<Car> findCarByUserId(Long userId) {
+        return carService.findCarByUserId(userId);
+    }
 }

@@ -2,6 +2,7 @@ package ua.com.carservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ua.com.carservice.entity.Car;
+import ua.com.carservice.entity.User;
 import ua.com.carservice.entity.enums.Color;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     void deleteById(Long id);
 
     Optional<Car> findById (Long id);
+
+    List<Car> findCarByUserId(Long userId);
 }
