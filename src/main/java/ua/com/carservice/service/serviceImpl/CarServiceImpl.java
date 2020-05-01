@@ -9,6 +9,7 @@ import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.User;
 import ua.com.carservice.entity.enums.Color;
+import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.CarRepository;
 import ua.com.carservice.repository.UserRepository;
 import ua.com.carservice.service.CarService;
@@ -56,7 +57,7 @@ public class CarServiceImpl implements CarService {
         return userRepository.findById(userId).map(user -> {
             car.setUser(user);
             return carRepository.save(car);
-        }).orElseThrow(() -> new RuntimeException());
+        }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID"+userId));
     }
 
     @Override
@@ -75,7 +76,7 @@ public class CarServiceImpl implements CarService {
                     car.setModel(carDto.getModel());
                     car.setYear(carDto.getYear());
                     return carRepository.save(car);
-                }).orElseThrow(() -> new RuntimeException());
+                }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID"+carId));
     }
 
 
