@@ -1,23 +1,30 @@
-package ua.com.carservice.dto;
+package ua.com.carservice.dto.CarDto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.enums.Color;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarDto {
+public class CarSaveDto {
 
-    private long id;
+    @NotNull
     private String firm;
+    @NotNull
     private String model;
-    private int year;
+    @NotNull
+    private Integer year;
     @Enumerated(value = EnumType.STRING)
     private Color color;
+
+
 
 }

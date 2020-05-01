@@ -6,11 +6,10 @@ import org.modelmapper.config.Configuration.AccessLevel;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 @Configuration
 @AllArgsConstructor
-public class ModelMapperConfig {
+public class ModelMapperConfig extends ModelMapper{
 
     @Bean
     public ModelMapper modelMapper() {

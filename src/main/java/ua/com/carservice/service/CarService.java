@@ -1,24 +1,25 @@
 package ua.com.carservice.service;
 
+import ua.com.carservice.dto.CarDto.CarDto;
+import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.enums.Color;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CarService {
 
-    List<Car> findAll();
+    List<CarDto> findAll();
 
-    List<Car> findByColor(Color color);
+    List<CarDto> findByColor(Color color);
 
-    List<Car> findByYear(Integer year);
+    List<CarDto> findByYear(Integer year);
 
-    Car save(Car car);
+    Car update (Long carId, CarDto carDto);
 
     void deleteById(Long id);
 
-    Optional<Car> findById(Long id);
+    Car save(Long userId,CarSaveDto carSaveDto);
 
 
 }
