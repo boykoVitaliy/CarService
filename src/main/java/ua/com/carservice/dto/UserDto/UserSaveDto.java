@@ -22,4 +22,6 @@ public class UserSaveDto {
     private String email;
     @NotNull
     private String password;
+    @NotNull
+    private Long number;
 }

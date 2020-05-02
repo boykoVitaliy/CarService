@@ -79,7 +79,6 @@ public class CarServiceImpl implements CarService {
                 }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--"+carId));
     }
 
-
     @Override
     public void deleteById(Long id) {
         carRepository.deleteById(id);
