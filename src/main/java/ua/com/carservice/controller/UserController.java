@@ -2,6 +2,8 @@ package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.com.carservice.dto.UserDto.UserSaveDto;
+import ua.com.carservice.dto.UserDto.UserUpdateDto;
 import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.User;
 import ua.com.carservice.service.UserService;
@@ -45,8 +47,13 @@ public class UserController {
     }
 
     @PostMapping(USER + "/{userId}")
-    public User save(User user) {
-        return userService.save(user);
+    public User save(UserSaveDto userDto) {
+        return userService.save(userDto);
+    }
+
+    @PostMapping(USER+"/{updateId}")
+    public User update(Long userId, UserUpdateDto userUpdateDto) {
+        return userService.update(userId, userUpdateDto);
     }
 
     @GetMapping(USER + "/{deleteId}")
