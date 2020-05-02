@@ -57,7 +57,7 @@ public class CarServiceImpl implements CarService {
         return userRepository.findById(userId).map(user -> {
             car.setUser(user);
             return carRepository.save(car);
-        }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID"+userId));
+        }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--"+userId));
     }
 
     @Override
@@ -76,7 +76,7 @@ public class CarServiceImpl implements CarService {
                     car.setModel(carDto.getModel());
                     car.setYear(carDto.getYear());
                     return carRepository.save(car);
-                }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID"+carId));
+                }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--"+carId));
     }
 
 
