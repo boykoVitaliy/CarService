@@ -27,6 +27,7 @@ public class Goods {
     @Column(nullable = false)
     private String category;
 
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "goods")
     private List<User> user;
 
