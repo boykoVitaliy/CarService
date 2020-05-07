@@ -52,17 +52,17 @@ public class CarServiceImpl implements CarService {
 
 
     @Override
-    public Car save(Long userId,CarSaveDto carSaveDto) {
+    public Car save(Long userId, CarSaveDto carSaveDto) {
         Car car = modelMapper.map(carSaveDto, Car.class);
         return userRepository.findById(userId).map(user -> {
             car.setUser(user);
             return carRepository.save(car);
-        }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--"+userId));
+        }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--" + userId));
     }
 
     @Override
     public List<Car> findCarByUserId(Long userId) {
-        return modelMapper.map(carRepository.findCarByUserId(userId),new TypeToken<List<CarDto>>() {
+        return modelMapper.map(carRepository.findCarByUserId(userId), new TypeToken<List<CarDto>>() {
         }.getType());
     }
 
@@ -76,7 +76,7 @@ public class CarServiceImpl implements CarService {
                     car.setModel(carDto.getModel());
                     car.setYear(carDto.getYear());
                     return carRepository.save(car);
-                }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--"+carId));
+                }).orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID--" + carId));
     }
 
     @Override
