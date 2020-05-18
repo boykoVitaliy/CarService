@@ -13,10 +13,10 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 public class CarDto {
 
-    private long id;
+    private Long id;
     private String firm;
     private String model;
-    private int year;
+    private Integer year;
     @Enumerated(value = EnumType.STRING)
     private Color color;
 

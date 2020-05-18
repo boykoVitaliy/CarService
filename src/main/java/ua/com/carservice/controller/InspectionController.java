@@ -2,6 +2,8 @@ package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.com.carservice.dto.InspectionDto.InspectionDto;
+import ua.com.carservice.dto.InspectionDto.InspectionUpdateDto;
 import ua.com.carservice.entity.Inspection;
 import ua.com.carservice.service.InspectionService;
 
@@ -47,12 +49,17 @@ public class InspectionController {
 
 
     @PostMapping(INSPECTION+"/{inspectId}")
-    public Inspection save(Inspection inspect) {
+    public Inspection save(InspectionDto inspect) {
         return inspectionService.save(inspect);
     }
 
     @GetMapping(INSPECTION+"/{deleteId}")
     public void deleteById(Long id) {
         inspectionService.deleteById(id);
+    }
+
+    @PostMapping(INSPECTION+"/{updateInspectionId}")
+    public Inspection update(Long inspectionId , InspectionUpdateDto inspectionUpdateDto){
+        return inspectionService.update(inspectionId,inspectionUpdateDto);
     }
 }

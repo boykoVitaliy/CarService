@@ -4,13 +4,16 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.UserDto.UserDto;
 import ua.com.carservice.dto.UserDto.UserSaveDto;
 import ua.com.carservice.dto.UserDto.UserUpdateDto;
 import ua.com.carservice.entity.Car;
+import ua.com.carservice.entity.Goods;
 import ua.com.carservice.entity.User;
 import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.CarRepository;
+import ua.com.carservice.repository.GoodsRepository;
 import ua.com.carservice.repository.UserRepository;
 import ua.com.carservice.service.UserService;
 
@@ -22,12 +25,14 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final CarRepository carRepository;
+    private final GoodsRepository goodsRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, CarRepository carRepository) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, CarRepository carRepository, GoodsRepository goodsRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.carRepository = carRepository;
+        this.goodsRepository = goodsRepository;
     }
 
     @Override
@@ -70,5 +75,6 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(user);
         }).orElseThrow(()->new NotFoundException("NOT_FOUND_THIS_ID--"+userId));
     }
+
 
 }

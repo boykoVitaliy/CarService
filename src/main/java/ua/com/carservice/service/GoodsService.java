@@ -1,5 +1,6 @@
 package ua.com.carservice.service;
 
+import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.GoodsDto.GoodsSaveDto;
 import ua.com.carservice.dto.GoodsDto.GoodsUpdateDto;
 import ua.com.carservice.entity.Car;
@@ -24,4 +25,6 @@ public interface GoodsService {
     void deleteById (Long id);
 
     Goods update(Long goodsId , GoodsUpdateDto goodsUpdate);
+
+    Goods updateGoods(Long userId, GoodsAddUserDto goodsAddDto);
 }

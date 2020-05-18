@@ -3,6 +3,7 @@ package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.GoodsDto.GoodsSaveDto;
 import ua.com.carservice.dto.GoodsDto.GoodsUpdateDto;
 import ua.com.carservice.entity.Goods;
@@ -62,5 +63,10 @@ public class GoodsController {
     @PostMapping(GOODS + "/{goodsUpdateId}")
     public Goods update(Long goodsId, GoodsUpdateDto goodsUpdate) {
         return goodsService.update(goodsId, goodsUpdate);
+    }
+
+    @PostMapping(GOODS+"/{addGoodsId}")
+    public Goods updateGoods(Long userId, GoodsAddUserDto goodsAddDto){
+        return goodsService.updateGoods(userId, goodsAddDto);
     }
 }

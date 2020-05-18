@@ -4,12 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.GoodsDto.GoodsDto;
 import ua.com.carservice.dto.GoodsDto.GoodsSaveDto;
 import ua.com.carservice.dto.GoodsDto.GoodsUpdateDto;
 import ua.com.carservice.entity.Goods;
 import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.GoodsRepository;
+import ua.com.carservice.repository.UserRepository;
 import ua.com.carservice.service.GoodsService;
 
 import java.util.List;
@@ -20,11 +22,13 @@ public class GoodsServiceImpl implements GoodsService {
 
     private final GoodsRepository goodsRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
     @Autowired
-    public GoodsServiceImpl(GoodsRepository goodsRepository, ModelMapper modelMapper) {
+    public GoodsServiceImpl(GoodsRepository goodsRepository, ModelMapper modelMapper, UserRepository userRepository) {
         this.goodsRepository = goodsRepository;
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
 
@@ -67,5 +71,13 @@ public class GoodsServiceImpl implements GoodsService {
         }).orElseThrow(()->new NotFoundException("NOT_FOUND_THIS_ID "+goodsId));
     }
 
+    @Override
+    public Goods updateGoods(Long userId, GoodsAddUserDto goodsAddDto){
+        Goods goods = modelMapper.map(goodsAddDto, Goods.class);
+        return userRepository.findById(userId).map(user->{
+
+            return goodsRepository.save(goods);
+        }).orElseThrow(()->new NotFoundException("NOT_FOUND_THIS_ID--"+userId));
+    }
 
 }
