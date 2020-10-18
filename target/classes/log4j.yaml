@@ -1,0 +1,51 @@
+Configuration:
+  package: "com.ua.log.Application"
+  name: Logj2_Packge
+
+  Properties:
+    Property:
+      name: log-path
+      value: "logs"
+
+  Appenders:
+
+    Console:
+      - name: Console_Appender
+        PatternLayout:
+          pattern: "%highlight{%-5level}{ERROR=bg_yellow} %style{%date{yyyy-MM-dd}}{red} %class{1}:%L - %highlight{%msg} %xEx{short}%n"
+      - name: Console_Appender2
+        PatternLayout:
+          pattern: "%highlight{%-5level}{FATAL=bg_red} %style{%date{yyyy-MM-dd}}{blue} %class{1}:%L - %highlight{%msg} %xEx{short}%n"
+
+#  File:
+#    - name: rootLogFile
+#      fileName: ${log-path}/rootFile.log
+#      PatternLayout:
+#        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %class{1}:%L - %msg%xEx{short}%n"
+
+  #--------------------------------------------------------------
+
+  Loggers:
+    Root:
+      level: all
+      AppenderRef:
+        - ref: rootLogFile
+          level: all
+
+    Logger:
+
+      - name: ua.com.carservice.Application
+        level: all
+        AppenderRef:
+          - ref: Console_Appender
+            level: trace
+          - ref: infoFile
+            level: info
+
+      - name: uua.com.carservice.controller.CarController
+        level: all
+        AppenderRef:
+          - ref: Console_Appender
+              level: debug
+
+
