@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.com.carservice.constants.Errors;
 import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.GoodsDto.GoodsDto;
 import ua.com.carservice.dto.GoodsDto.GoodsSaveDto;
@@ -40,11 +41,23 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> findGoodsByPrice(Double price) {
+
+        List<Goods> goodsByPrice = goodsRepository.findGoodsByPrice(price);
+
+        if(price==null){
+            throw new NotFoundException(Errors.FIELD_PRICE_IS_EMPTY);
+        }
+        else if(goodsByPrice.isEmpty()){
+            throw new NotFoundException(Errors.NOT_FOUND_GOODS);
+        }
+
         return modelMapper.map(goodsRepository.findGoodsByPrice(price),new TypeToken<List<GoodsDto>>(){}.getType());
     }
 
     @Override
     public List<Goods> findGoodsByCategory(String category) {
+
+
         return modelMapper.map(goodsRepository.findGoodsByCategory(category),new TypeToken<List<GoodsDto>>(){}.getType());
     }
 
