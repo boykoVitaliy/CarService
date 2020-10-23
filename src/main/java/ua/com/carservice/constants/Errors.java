@@ -12,6 +12,9 @@ public final class Errors {
 
 //    GoodsServiceImpl
     public static final String FIELD_PRICE_IS_EMPTY="Pleas enter price";
-    public static final String NOT_FOUND_GOODS="No goods with this price was found";
+    public static final String NOT_FOUND_GOODS="Goods not found with this:";
+    public static final String FIELD_CATEGORY_IS_EMPTY="Pleas choose category";
+    public static final String FIELD_FIRM_IS_EMPTY="Pleas choose firm";
+
 
 }

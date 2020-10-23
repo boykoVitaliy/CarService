@@ -10,6 +10,7 @@ import ua.com.carservice.dto.GoodsDto.GoodsDto;
 import ua.com.carservice.dto.GoodsDto.GoodsSaveDto;
 import ua.com.carservice.dto.GoodsDto.GoodsUpdateDto;
 import ua.com.carservice.entity.Goods;
+import ua.com.carservice.exception.EmptyFieldException;
 import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.GoodsRepository;
 import ua.com.carservice.repository.UserRepository;
@@ -45,10 +46,10 @@ public class GoodsServiceImpl implements GoodsService {
         List<Goods> goodsByPrice = goodsRepository.findGoodsByPrice(price);
 
         if(price==null){
-            throw new NotFoundException(Errors.FIELD_PRICE_IS_EMPTY);
+            throw new EmptyFieldException(Errors.FIELD_PRICE_IS_EMPTY);
         }
         else if(goodsByPrice.isEmpty()){
-            throw new NotFoundException(Errors.NOT_FOUND_GOODS);
+            throw new NotFoundException(Errors.NOT_FOUND_GOODS+price);
         }
 
         return modelMapper.map(goodsRepository.findGoodsByPrice(price),new TypeToken<List<GoodsDto>>(){}.getType());
@@ -57,12 +58,31 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> findGoodsByCategory(String category) {
 
+        List<Goods> goodsByCategory = goodsRepository.findGoodsByCategory(category);
+
+        if(category==null){
+            throw new EmptyFieldException(Errors.FIELD_CATEGORY_IS_EMPTY);
+        }
+else if(goodsByCategory.isEmpty()){
+    throw new NotFoundException(Errors.NOT_FOUND_GOODS+category);
+        }
 
         return modelMapper.map(goodsRepository.findGoodsByCategory(category),new TypeToken<List<GoodsDto>>(){}.getType());
     }
 
     @Override
     public List<Goods> findGoodsByFirm(String firm) {
+
+
+        List<Goods> goodsByFirm = goodsRepository.findGoodsByFirm(firm);
+
+        if(firm==null){
+            throw new EmptyFieldException(Errors.FIELD_FIRM_IS_EMPTY);
+        }
+        else if(goodsByFirm.isEmpty()){
+            throw new NotFoundException(Errors.NOT_FOUND_GOODS+firm);
+        }
+
         return modelMapper.map(goodsRepository.findGoodsByFirm(firm),new TypeToken<List<GoodsDto>>(){}.getType());
     }
 

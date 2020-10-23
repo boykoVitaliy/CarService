@@ -11,6 +11,7 @@ import ua.com.carservice.dto.CarDto.CarDto;
 import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
 import ua.com.carservice.entity.enums.Color;
+import ua.com.carservice.exception.EmptyFieldException;
 import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.CarRepository;
 import ua.com.carservice.repository.UserRepository;
@@ -85,7 +86,7 @@ public class CarServiceImpl implements CarService {
         List<Car> carByUser = carRepository.findCarByUserId(userId);
 
         if (userId==null){
-            throw new NotFoundException(Errors.FIELD_USERID_IS_EMPTY);
+            throw new EmptyFieldException(Errors.FIELD_USERID_IS_EMPTY);
         }
         else if (carByUser.isEmpty()){
             throw new NotFoundException(Errors.NOT_FOUND_INFO);
