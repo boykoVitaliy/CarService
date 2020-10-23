@@ -16,5 +16,9 @@ public final class Errors {
     public static final String FIELD_CATEGORY_IS_EMPTY="Pleas choose category";
     public static final String FIELD_FIRM_IS_EMPTY="Pleas choose firm";
 
+//    CarServiceImpl
+    public static final String DATA_NOT_FOUND="Please correct your data";
+
+
 
 }

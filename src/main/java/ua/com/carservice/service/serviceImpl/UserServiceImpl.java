@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.com.carservice.constants.Errors;
 import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.UserDto.UserDto;
 import ua.com.carservice.dto.UserDto.UserSaveDto;
@@ -42,16 +43,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByCars(Car car) {
+        List<User> findByCars = userRepository.findByCars(car);
+
+        if(findByCars.isEmpty()){
+            throw new NotFoundException(Errors.DATA_NOT_FOUND+car);
+        }
+
         return modelMapper.map(userRepository.findByCars(car),new TypeToken<List<UserDto>>(){}.getType());
     }
 
     @Override
     public List<User> findByNumber(Long number) {
+        List<User> findByNumber = userRepository.findByNumber(number);
+
+        if(findByNumber.isEmpty()){
+            throw new NotFoundException(Errors.DATA_NOT_FOUND+number);
+        }
+
         return modelMapper.map(userRepository.findByNumber(number),new TypeToken<List<UserDto>>(){}.getType());
     }
 
     @Override
     public List<User> findByEmail(String email)  {
+        List<User> findByEmail = userRepository.findByEmail(email);
+
+        if(findByEmail.isEmpty()){
+            throw new NotFoundException(Errors.DATA_NOT_FOUND+email);
+        }
         return modelMapper.map(userRepository.findByEmail(email),new TypeToken<List<UserDto>>(){}.getType());
     }
 
