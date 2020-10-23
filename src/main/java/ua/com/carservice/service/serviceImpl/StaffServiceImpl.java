@@ -1,8 +1,9 @@
 package ua.com.carservice.service.serviceImpl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ua.com.carservice.constants.Errors;
-import ua.com.carservice.entity.Inspection;
+import ua.com.carservice.dto.StaffDto.StaffSaveDto;
 import ua.com.carservice.entity.Staff;
 import ua.com.carservice.entity.enums.Position;
 import ua.com.carservice.exception.EmptyFieldException;
@@ -13,13 +14,16 @@ import ua.com.carservice.service.StaffService;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class StaffServiceImpl implements StaffService {
 
     private final StaffRepository staffRepository;
+    private final ModelMapper modelMapper;
 
-    public StaffServiceImpl(StaffRepository staffRepository) {
+    public StaffServiceImpl(StaffRepository staffRepository, ModelMapper modelMapper) {
         this.staffRepository = staffRepository;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -75,8 +79,8 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff save(Staff staff) {
-        return staffRepository.save(staff);
+    public Staff save(StaffSaveDto staffSaveDto) {
+        return staffRepository.save(modelMapper.map(staffSaveDto,Staff.class));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ua.com.carservice.service;
 
+import ua.com.carservice.dto.StaffDto.StaffSaveDto;
 import ua.com.carservice.entity.Staff;
 import ua.com.carservice.entity.enums.Position;
 
@@ -18,7 +19,7 @@ public interface StaffService {
 
     List<Staff> findByPosition(Position position);
 
-    Staff save(Staff staff);
+    Staff save(StaffSaveDto staffSaveDto);
 
     void deleteById(Long id);
 }
