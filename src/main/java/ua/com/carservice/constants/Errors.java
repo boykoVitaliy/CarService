@@ -23,6 +23,8 @@ public final class Errors {
     public static final String NOT_FOUND_PRICE="Not found price ";
     public static final String DID_NOT_SELECT_FIELD="Select field";
 
+    public static final String STAFF_NOT_FOUND="Not found staff";
+
 
 
 }
