@@ -2,6 +2,7 @@ package ua.com.carservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.com.carservice.dto.StaffDto.StaffSaveDto;
 import ua.com.carservice.entity.Staff;
 import ua.com.carservice.entity.enums.Position;
 import ua.com.carservice.service.StaffService;
@@ -54,8 +55,8 @@ public class StaffController {
 
 
     @PostMapping(STAFF+"/{staffId}")
-    public Staff save(Staff staff) {
-        return staffService.save(staff);
+    public Staff save(StaffSaveDto staffSaveDto) {
+        return staffService.save(staffSaveDto);
     }
 
     @GetMapping(STAFF+"/{deleteId}")

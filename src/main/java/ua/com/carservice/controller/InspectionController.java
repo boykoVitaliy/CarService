@@ -29,37 +29,37 @@ public class InspectionController {
         return inspectionService.findAll();
     }
 
-    @GetMapping(INSPECTION+INSPECTION_PRICE)
+    @GetMapping(INSPECTION + INSPECTION_PRICE)
     @ResponseBody
     public List<Inspection> findByPrice(@RequestParam(required = false) Double price) {
         return inspectionService.findByPrice(price);
     }
 
-    @GetMapping(INSPECTION+SUPPORT)
+    @GetMapping(INSPECTION + SUPPORT)
     @ResponseBody
     public List<Inspection> findBySupport(@RequestParam(required = false) String support) {
         return inspectionService.findBySupport(support);
     }
 
-    @GetMapping(INSPECTION+BIGGER_PRICE)
+    @GetMapping(INSPECTION + BIGGER_PRICE)
     @ResponseBody
     public List<Inspection> findByPriceIsGreaterThan(@RequestParam(required = false) Double price) {
         return inspectionService.findByPriceIsGreaterThan(price);
     }
 
 
-    @PostMapping(INSPECTION+"/{inspectId}")
+    @PostMapping(INSPECTION + "/{inspectId}")
     public Inspection save(InspectionDto inspect) {
         return inspectionService.save(inspect);
     }
 
-    @GetMapping(INSPECTION+"/{deleteId}")
+    @GetMapping(INSPECTION + "/{deleteId}")
     public void deleteById(Long id) {
         inspectionService.deleteById(id);
     }
 
-    @PostMapping(INSPECTION+"/{updateInspectionId}")
-    public Inspection update(Long inspectionId , InspectionUpdateDto inspectionUpdateDto){
-        return inspectionService.update(inspectionId,inspectionUpdateDto);
+    @PostMapping(INSPECTION + "/{updateInspectionId}")
+    public Inspection update(Long inspectionId, InspectionUpdateDto inspectionUpdateDto) {
+        return inspectionService.update(inspectionId, inspectionUpdateDto);
     }
 }
