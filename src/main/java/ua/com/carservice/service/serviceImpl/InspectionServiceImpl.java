@@ -3,9 +3,11 @@ package ua.com.carservice.service.serviceImpl;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
+import ua.com.carservice.constants.Errors;
 import ua.com.carservice.dto.InspectionDto.InspectionDto;
 import ua.com.carservice.dto.InspectionDto.InspectionUpdateDto;
 import ua.com.carservice.entity.Inspection;
+import ua.com.carservice.exception.EmptyFieldException;
 import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.InspectionRepository;
 import ua.com.carservice.service.InspectionService;
@@ -27,28 +29,62 @@ public class InspectionServiceImpl implements InspectionService {
     @Override
     public List<Inspection> findAll() {
 
-        return modelMapper.map(inspectionRepository.findAll(),new TypeToken<List<InspectionDto>>(){}.getType());
+        return modelMapper.map(inspectionRepository.findAll(), new TypeToken<List<InspectionDto>>() {
+        }.getType());
     }
 
     @Override
     public List<Inspection> findByPrice(Double price) {
 
-        return modelMapper.map(inspectionRepository.findByPrice(price),new TypeToken<List<InspectionDto>>(){}.getType());
+        List<Inspection> findByPrice = inspectionRepository.findByPrice(price);
+
+        if (findByPrice.isEmpty()) {
+
+            throw new NotFoundException(Errors.NOT_FOUND_PRICE + price);
+        } else if (price == null) {
+            throw new EmptyFieldException(Errors.FIELD_IS_EMPTY);
+        }
+
+        return modelMapper.map(inspectionRepository.findByPrice(price), new TypeToken<List<InspectionDto>>() {
+        }.getType());
     }
 
     @Override
     public List<Inspection> findBySupport(String support) {
-        return modelMapper.map(inspectionRepository.findBySupport(support),new TypeToken<List<InspectionDto>>(){}.getType());
+        List<Inspection> findBySupport = inspectionRepository.findBySupport(support);
+
+        if (support == null) {
+
+            throw new EmptyFieldException(Errors.DID_NOT_SELECT_FIELD);
+
+        }
+
+        return modelMapper.map(inspectionRepository.findBySupport(support), new TypeToken<List<InspectionDto>>() {
+        }.getType());
     }
 
     @Override
     public List<Inspection> findByPriceIsGreaterThan(Double price) {
-        return modelMapper.map(inspectionRepository.findByPriceIsGreaterThan(price), new TypeToken<List<InspectionDto>>(){}.getType());
+
+        List<Inspection> findByPriceIsGreaterThan = inspectionRepository.findByPriceIsGreaterThan(price);
+
+        if (price == null) {
+
+            throw new EmptyFieldException(Errors.FIELD_IS_EMPTY + price);
+
+        } else if (findByPriceIsGreaterThan.isEmpty()) {
+
+            throw new NotFoundException(Errors.NOT_FOUND_PRICE+price);
+
+        }
+
+        return modelMapper.map(inspectionRepository.findByPriceIsGreaterThan(price), new TypeToken<List<InspectionDto>>() {
+        }.getType());
     }
 
     @Override
     public Inspection save(InspectionDto inspect) {
-        return inspectionRepository.save(modelMapper.map(inspect,Inspection.class));
+        return inspectionRepository.save(modelMapper.map(inspect, Inspection.class));
     }
 
     @Override
@@ -63,7 +99,7 @@ public class InspectionServiceImpl implements InspectionService {
             inspection.setPrice(inspectionUpdateDto.getPrice());
             inspection.setSupport(inspectionUpdateDto.getSupport());
             return inspectionRepository.save(inspection);
-        }).orElseThrow(()->new NotFoundException("Not_Found_This_Id"+inspectionId));
+        }).orElseThrow(() -> new NotFoundException("Not_Found_This_Id" + inspectionId));
     }
 
 
