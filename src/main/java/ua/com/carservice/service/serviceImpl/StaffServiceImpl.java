@@ -1,8 +1,10 @@
 package ua.com.carservice.service.serviceImpl;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import ua.com.carservice.constants.Errors;
+import ua.com.carservice.dto.StaffDto.StaffDto;
 import ua.com.carservice.dto.StaffDto.StaffSaveDto;
 import ua.com.carservice.entity.Staff;
 import ua.com.carservice.entity.enums.Position;
@@ -29,7 +31,8 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Staff> findAll() {
-        return staffRepository.findAll();
+        return modelMapper.map(staffRepository.findAll(), new TypeToken<List<StaffDto>>() {
+        }.getType());
     }
 
     @Override
@@ -37,50 +40,53 @@ public class StaffServiceImpl implements StaffService {
 
         List<Staff> findByFirstName = staffRepository.findByFirstName(firstName);
 
-        if(findByFirstName.isEmpty()){
+        if (findByFirstName.isEmpty()) {
 
-            throw new NotFoundException(Errors.STAFF_NOT_FOUND+firstName);
+            throw new NotFoundException(Errors.STAFF_NOT_FOUND + firstName);
         }
 
-        return staffRepository.findByFirstName(firstName);
+        return modelMapper.map(staffRepository.findByFirstName(firstName), new TypeToken<List<StaffDto>>() {
+        }.getType());
     }
 
     @Override
     public List<Staff> findStaffByFirstNameAndLastName(String firstName, String lastName) {
 
-        List<Staff> findByFirstNameAndLastName = staffRepository.findStaffByFirstNameAndLastName(firstName,lastName);
+        List<Staff> findByFirstNameAndLastName = staffRepository.findStaffByFirstNameAndLastName(firstName, lastName);
 
-        if(findByFirstNameAndLastName.isEmpty()){
+        if (findByFirstNameAndLastName.isEmpty()) {
 
-            throw new NotFoundException(Errors.STAFF_NOT_FOUND+firstName+lastName);
+            throw new NotFoundException(Errors.STAFF_NOT_FOUND + firstName + lastName);
         }
 
 
-        return staffRepository.findStaffByFirstNameAndLastName(firstName, lastName);
+        return modelMapper.map(staffRepository.findStaffByFirstNameAndLastName(firstName, lastName), new TypeToken<List<StaffDto>>() {
+        }.getType());
     }
 
     @Override
     public Optional<Staff> findById(Long id) {
 
-        return (Optional<Staff>) Optional.empty().orElseThrow(()->new NotFoundException("NOT_FOUND_THIS_ID"+id));
+        return (Optional<Staff>) Optional.empty().orElseThrow(() -> new NotFoundException("NOT_FOUND_THIS_ID" + id));
     }
 
     @Override
     public List<Staff> findByPosition(Position position) {
         List<Staff> findByPosition = staffRepository.findByPosition(position);
 
-        if(position==null){
+        if (position == null) {
 
             throw new EmptyFieldException(Errors.FIELD_IS_EMPTY);
         }
 
 
-        return staffRepository.findByPosition(position);
+        return modelMapper.map(staffRepository.findByPosition(position), new TypeToken<List<StaffDto>>() {
+        }.getType());
     }
 
     @Override
     public Staff save(StaffSaveDto staffSaveDto) {
-        return staffRepository.save(modelMapper.map(staffSaveDto,Staff.class));
+        return staffRepository.save(modelMapper.map(staffSaveDto, Staff.class));
     }
 
     @Override
