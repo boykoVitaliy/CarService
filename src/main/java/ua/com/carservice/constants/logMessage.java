@@ -9,4 +9,8 @@ public class logMessage {
     public static final String FIND_GOOD_BY_PRICE="find good by price: ";
     public static final String FIND_GOOD_BY_CATEGORY="find good by category: ";
     public static final String FIND_GOOD_BY_FIRM="find good by firm: ";
+
+    public static final String FIND_BY_PRICE="find inspection by price: ";
+    public static final String FIND_BY_SUPPORT="find inspection by support: ";
+    public static final String DELETE_BY_ID="delete by id";
 }

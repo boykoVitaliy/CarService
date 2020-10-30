@@ -1,9 +1,11 @@
 package ua.com.carservice.service.serviceImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import ua.com.carservice.constants.Errors;
+import ua.com.carservice.constants.logMessage;
 import ua.com.carservice.dto.InspectionDto.InspectionDto;
 import ua.com.carservice.dto.InspectionDto.InspectionUpdateDto;
 import ua.com.carservice.entity.Inspection;
@@ -15,6 +17,7 @@ import ua.com.carservice.service.InspectionService;
 import javax.persistence.Id;
 import java.util.List;
 
+@Slf4j
 @Service
 public class InspectionServiceImpl implements InspectionService {
 
@@ -36,6 +39,8 @@ public class InspectionServiceImpl implements InspectionService {
     @Override
     public List<InspectionDto> findByPrice(Double price) {
 
+      log.info(logMessage.FIND_BY_PRICE+price);
+
         List<Inspection> findByPrice = inspectionRepository.findByPrice(price);
 
         if (findByPrice.isEmpty()) {
@@ -51,6 +56,9 @@ public class InspectionServiceImpl implements InspectionService {
 
     @Override
     public List<InspectionDto> findBySupport(String support) {
+
+        log.info(logMessage.FIND_BY_SUPPORT+support);
+
         List<Inspection> findBySupport = inspectionRepository.findBySupport(support);
 
         if (support == null) {
@@ -65,6 +73,8 @@ public class InspectionServiceImpl implements InspectionService {
 
     @Override
     public List<InspectionDto> findByPriceIsGreaterThan(Double price) {
+
+
 
         List<Inspection> findByPriceIsGreaterThan = inspectionRepository.findByPriceIsGreaterThan(price);
 
@@ -89,6 +99,8 @@ public class InspectionServiceImpl implements InspectionService {
 
     @Override
     public void deleteById(Long id) {
+        log.info(logMessage.DELETE_BY_ID+id);
+
         inspectionRepository.deleteById(id);
     }
 
