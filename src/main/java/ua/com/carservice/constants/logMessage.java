@@ -17,4 +17,8 @@ public class logMessage {
     public static final String FIND_BY_FIRST_NAME = "find staff by first name: ";
     public static final String FIND_STAFF_BY_FIRST_AND_LAST_NAME = "find staff by first and last name: ";
     public static final String FIND_BY_POSITION="Find by position: ";
+
+    public static final String FIND_BY_EMAIL="find by email: ";
+    public static final String FIND_BY_NUMBER="find by number: ";
+    public static final String FIND_BY_CARS="find by cars: ";
 }

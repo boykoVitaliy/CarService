@@ -1,10 +1,12 @@
 package ua.com.carservice.service.serviceImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.com.carservice.constants.Errors;
+import ua.com.carservice.constants.logMessage;
 import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.UserDto.UserDto;
 import ua.com.carservice.dto.UserDto.UserSaveDto;
@@ -20,6 +22,7 @@ import ua.com.carservice.service.UserService;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -43,6 +46,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByCars(Car car) {
+
+        log.info(logMessage.FIND_BY_CARS+car);
+
         List<User> findByCars = userRepository.findByCars(car);
 
         if(findByCars.isEmpty()){
@@ -54,6 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByNumber(Long number) {
+        log.info(logMessage.FIND_BY_NUMBER+number);
         List<User> findByNumber = userRepository.findByNumber(number);
 
         if(findByNumber.isEmpty()){
@@ -65,6 +72,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByEmail(String email)  {
+        log.info(logMessage.FIND_BY_EMAIL+email);
         List<User> findByEmail = userRepository.findByEmail(email);
 
         if(findByEmail.isEmpty()){
@@ -80,6 +88,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Long id) {
+
+        log.warn(logMessage.DELETE_BY_ID+id);
+
         userRepository.deleteById(id);
     }
 
