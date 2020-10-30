@@ -1,9 +1,11 @@
 package ua.com.carservice.service.serviceImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import ua.com.carservice.constants.Errors;
+import ua.com.carservice.constants.logMessage;
 import ua.com.carservice.dto.StaffDto.StaffDto;
 import ua.com.carservice.dto.StaffDto.StaffSaveDto;
 import ua.com.carservice.entity.Staff;
@@ -16,7 +18,7 @@ import ua.com.carservice.service.StaffService;
 import java.util.List;
 import java.util.Optional;
 
-
+@Slf4j
 @Service
 public class StaffServiceImpl implements StaffService {
 
@@ -38,6 +40,8 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public List<Staff> findByFirstName(String firstName) {
 
+log.info(logMessage.FIND_BY_FIRST_NAME+firstName);
+
         List<Staff> findByFirstName = staffRepository.findByFirstName(firstName);
 
         if (findByFirstName.isEmpty()) {
@@ -51,6 +55,8 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Staff> findStaffByFirstNameAndLastName(String firstName, String lastName) {
+
+        log.info(logMessage.FIND_STAFF_BY_FIRST_AND_LAST_NAME+firstName+lastName);
 
         List<Staff> findByFirstNameAndLastName = staffRepository.findStaffByFirstNameAndLastName(firstName, lastName);
 
@@ -72,6 +78,9 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Staff> findByPosition(Position position) {
+
+        log.info(logMessage.FIND_BY_POSITION);
+
         List<Staff> findByPosition = staffRepository.findByPosition(position);
 
         if (position == null) {
@@ -91,6 +100,9 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void deleteById(Long id) {
+
+        log.warn(logMessage.DELETE_BY_ID);
+
         staffRepository.deleteById(id);
     }
 }

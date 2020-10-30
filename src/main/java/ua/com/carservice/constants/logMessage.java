@@ -13,4 +13,8 @@ public class logMessage {
     public static final String FIND_BY_PRICE="find inspection by price: ";
     public static final String FIND_BY_SUPPORT="find inspection by support: ";
     public static final String DELETE_BY_ID="delete by id";
+
+    public static final String FIND_BY_FIRST_NAME = "find staff by first name: ";
+    public static final String FIND_STAFF_BY_FIRST_AND_LAST_NAME = "find staff by first and last name: ";
+    public static final String FIND_BY_POSITION="Find by position: ";
 }
