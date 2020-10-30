@@ -1,10 +1,12 @@
 package ua.com.carservice.service.serviceImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.com.carservice.constants.Errors;
+import ua.com.carservice.constants.logMessage;
 import ua.com.carservice.dto.GoodsDto.GoodsAddUserDto;
 import ua.com.carservice.dto.GoodsDto.GoodsDto;
 import ua.com.carservice.dto.GoodsDto.GoodsSaveDto;
@@ -18,7 +20,7 @@ import ua.com.carservice.service.GoodsService;
 
 import java.util.List;
 
-
+@Slf4j
 @Service
 public class GoodsServiceImpl implements GoodsService {
 
@@ -35,13 +37,17 @@ public class GoodsServiceImpl implements GoodsService {
 
 
     @Override
-    public List<Goods> findAll() {
+    public List<GoodsDto> findAll() {
+
+      log.info("FIND ALL");
 
         return modelMapper.map(goodsRepository.findAll(), new TypeToken<List<GoodsDto>>(){}.getType());
     }
 
     @Override
-    public List<Goods> findGoodsByPrice(Double price) {
+    public List<GoodsDto> findGoodsByPrice(Double price) {
+
+        log.info(logMessage.FIND_GOOD_BY_PRICE+price);
 
         List<Goods> goodsByPrice = goodsRepository.findGoodsByPrice(price);
 
@@ -56,7 +62,9 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> findGoodsByCategory(String category) {
+    public List<GoodsDto> findGoodsByCategory(String category) {
+
+        log.info(logMessage.FIND_GOOD_BY_CATEGORY+category);
 
         List<Goods> goodsByCategory = goodsRepository.findGoodsByCategory(category);
 
@@ -71,8 +79,9 @@ else if(goodsByCategory.isEmpty()){
     }
 
     @Override
-    public List<Goods> findGoodsByFirm(String firm) {
+    public List<GoodsDto> findGoodsByFirm(String firm) {
 
+        log.info(logMessage.FIND_GOOD_BY_FIRM+firm);
 
         List<Goods> goodsByFirm = goodsRepository.findGoodsByFirm(firm);
 
