@@ -1,12 +1,16 @@
 package ua.com.carservice.service.serviceImpl;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.com.carservice.constants.Errors;
+import ua.com.carservice.constants.logMessage;
 import ua.com.carservice.dto.CarDto.CarDto;
 import ua.com.carservice.dto.CarDto.CarSaveDto;
 import ua.com.carservice.entity.Car;
@@ -16,16 +20,16 @@ import ua.com.carservice.exception.NotFoundException;
 import ua.com.carservice.repository.CarRepository;
 import ua.com.carservice.repository.UserRepository;
 import ua.com.carservice.service.CarService;
-import ua.com.carservice.constants.Errors;
-
 
 import java.util.List;
+
+
 
 @Slf4j
 @Service
 public class CarServiceImpl implements CarService {
 
-    private static Logger logger = LogManager.getLogger(CarServiceImpl.class);
+
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
@@ -40,20 +44,15 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDto> findAll() {
-//      log.info("Test log");
-
-
         return modelMapper.map(carRepository.findAll(),
                 new TypeToken<List<CarDto>>() {
                 }.getType());
-
-
     }
 
     @Override
     public List<CarDto> findByColor(Color color) {
 
-
+        log.info(logMessage.FIND_BY_COLOR+color);
         return modelMapper.map(carRepository.findByColor(color), new TypeToken<List<CarDto>>() {
         }.getType());
     }
@@ -61,11 +60,15 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarDto> findByYear(Integer year) {
 
+        log.info(logMessage.FIND_BY_YEAR+year);
+
         List<Car> carYear = carRepository.findByYear(year);
 
         if (carYear.isEmpty()){
             throw new NotFoundException(Errors.NOT_FOUND_YEAR + year);
         }
+
+
 
         return modelMapper.map(carRepository.findByYear(year), new TypeToken<List<CarDto>>() {
         }.getType());
@@ -83,6 +86,9 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> findCarByUserId(Long userId) {
+
+        log.info(logMessage.FIND_CAR_BY_USER_ID+userId);
+
         List<Car> carByUser = carRepository.findCarByUserId(userId);
 
         if (userId==null){
