@@ -24,26 +24,28 @@ public class InspectionController {
 
     @GetMapping(INSPECTION)
     @ResponseBody
-    public List<Inspection> findAll() {
+    public List<InspectionDto> findAll() {
 
         return inspectionService.findAll();
     }
 
     @GetMapping(INSPECTION + INSPECTION_PRICE)
     @ResponseBody
-    public List<Inspection> findByPrice(@RequestParam(required = false) Double price) {
+    public List<InspectionDto> findByPrice(@RequestParam(required = false) Double price) {
+
+
         return inspectionService.findByPrice(price);
     }
 
     @GetMapping(INSPECTION + SUPPORT)
     @ResponseBody
-    public List<Inspection> findBySupport(@RequestParam(required = false) String support) {
+    public List<InspectionDto> findBySupport(@RequestParam(required = false) String support) {
         return inspectionService.findBySupport(support);
     }
 
     @GetMapping(INSPECTION + BIGGER_PRICE)
     @ResponseBody
-    public List<Inspection> findByPriceIsGreaterThan(@RequestParam(required = false) Double price) {
+    public List<InspectionDto> findByPriceIsGreaterThan(@RequestParam(required = false) Double price) {
         return inspectionService.findByPriceIsGreaterThan(price);
     }
 

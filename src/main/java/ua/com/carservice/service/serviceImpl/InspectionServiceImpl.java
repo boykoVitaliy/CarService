@@ -27,14 +27,14 @@ public class InspectionServiceImpl implements InspectionService {
     }
 
     @Override
-    public List<Inspection> findAll() {
+    public List<InspectionDto> findAll() {
 
         return modelMapper.map(inspectionRepository.findAll(), new TypeToken<List<InspectionDto>>() {
         }.getType());
     }
 
     @Override
-    public List<Inspection> findByPrice(Double price) {
+    public List<InspectionDto> findByPrice(Double price) {
 
         List<Inspection> findByPrice = inspectionRepository.findByPrice(price);
 
@@ -50,7 +50,7 @@ public class InspectionServiceImpl implements InspectionService {
     }
 
     @Override
-    public List<Inspection> findBySupport(String support) {
+    public List<InspectionDto> findBySupport(String support) {
         List<Inspection> findBySupport = inspectionRepository.findBySupport(support);
 
         if (support == null) {
@@ -64,7 +64,7 @@ public class InspectionServiceImpl implements InspectionService {
     }
 
     @Override
-    public List<Inspection> findByPriceIsGreaterThan(Double price) {
+    public List<InspectionDto> findByPriceIsGreaterThan(Double price) {
 
         List<Inspection> findByPriceIsGreaterThan = inspectionRepository.findByPriceIsGreaterThan(price);
 

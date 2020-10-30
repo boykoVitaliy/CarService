@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface InspectionService {
 
-    List<Inspection> findAll();
-    List<Inspection> findByPrice(Double price);
-    List<Inspection> findBySupport(String support);
-    List<Inspection> findByPriceIsGreaterThan(Double price);
+    List<InspectionDto> findAll();
+    List<InspectionDto> findByPrice(Double price);
+    List<InspectionDto> findBySupport(String support);
+    List<InspectionDto> findByPriceIsGreaterThan(Double price);
 
     Inspection save(InspectionDto inspect);
     void deleteById(Long id);
